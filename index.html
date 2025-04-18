@@ -24,7 +24,6 @@
 
     <section class="hero">
         <h2>Welcome to My Portfolio....</h2>
-        <p>Creating stylish and sophisticated digital experiences.</p>
         <a href="#projects" class="button">View My Work</a>
         
     </section>
@@ -32,7 +31,7 @@
     <!-- About Section -->
 <section class="hidden">
     <header>
-        <h1>About Me</h1>
+       <!-- <h1>About Me</h1>-->
     </header>
 
     <section id="about" class="section">
@@ -110,7 +109,7 @@
             </div>
         </section>
         <header>
-            <h1>Education & Experience</h1>
+            <!--<h1>Education & Experience</h1>-->
         </header>
 
     <section id="education" class="section">
@@ -197,7 +196,7 @@
 <!-- Projects Section -->
 <section class="hidden">
     <header>
-        <h1>My Projects</h1>
+        <!--<h1>My Projects</h1>-->
     </header>
     <!-- Projects Section -->
     <section id="projects" class="section">
@@ -258,7 +257,7 @@
 
 
 <header>
-    <h1>Contact Me</h1>
+   <!-- <h1>Contact Me</h1>-->
 </header>
 <br>
 
@@ -322,6 +321,43 @@
 </section>
 
 <div class="custom-cursor"></div>
+
+<script>
+    function revealOnScroll() {
+        const profilePic = document.querySelector('.profile-pic');
+
+        const rect = profilePic.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        if (rect.top < windowHeight - 100) {
+            profilePic.classList.add('visible');
+        }
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', () => {
+        const profilePic = document.querySelector('.profile-pic');
+        profilePic.classList.add('animate');
+        revealOnScroll(); // In case it's already visible on load
+    });
+
+    // Intersection Observer for skills animation
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // animate once
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+  
+    document.querySelectorAll('.skills-category').forEach(category => {
+      observer.observe(category);
+    });
+  </script>
+  
 
 </body>
 </html>
